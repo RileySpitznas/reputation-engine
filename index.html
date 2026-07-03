@@ -18,10 +18,18 @@
   --gold:#EAB308;
   --font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;--disp:'Space Grotesk',sans-serif;
 }
-body{background:var(--bg2);color:var(--ink);font-family:var(--font);font-size:14px;-webkit-font-smoothing:antialiased}
+body{
+  background-color:var(--bg2);
+  background-image:
+    linear-gradient(rgba(214,230,228,.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214,230,228,.5) 1px, transparent 1px),
+    radial-gradient(circle at 50% -8%, rgba(20,184,166,.10), transparent 50%);
+  background-size:44px 44px,44px 44px,100% 540px;background-position:center top;background-attachment:fixed;
+  color:var(--ink);font-family:var(--font);font-size:14px;-webkit-font-smoothing:antialiased
+}
 
-.top{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid var(--line);background:var(--bg);flex-wrap:wrap;gap:12px}
-.brand{display:flex;align-items:center;gap:10px}
+.top{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid var(--line);background:var(--bg)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
 .brand i{width:26px;height:26px;background:var(--teal);border-radius:7px;display:grid;place-items:center;color:#fff;font-family:var(--disp);font-weight:700;font-size:12px}
 .brand b{font-family:var(--disp);font-weight:600;font-size:15px}
 .brand small{font-family:var(--mono);font-size:10px;color:var(--ink3);letter-spacing:.4px}
@@ -53,6 +61,19 @@ body{background:var(--bg2);color:var(--ink);font-family:var(--font);font-size:14
 .kpi .v{font-family:var(--disp);font-size:20px;font-weight:600}
 .kpi .v.green{color:var(--green)}
 .kpi .l{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink3);margin-top:3px}
+
+.trend{border-top:1px solid var(--line);margin-top:14px;padding-top:16px}
+.trend-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.trend-h .t{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink2)}
+.trend-h .d{font-family:var(--mono);font-size:11px;color:var(--green);font-weight:500}
+.trend svg{width:100%;height:54px;display:block}
+.trend .insight{display:flex;align-items:center;gap:8px;margin-top:12px;background:var(--bg2);border-radius:9px;padding:9px 12px;font-size:12.5px;color:var(--ink);line-height:1.4}
+.trend .insight .ic{flex-shrink:0;width:22px;height:22px;border-radius:6px;background:var(--greenbg);color:var(--green);display:grid;place-items:center;font-size:12px}
+.trend .insight b{font-weight:600}
+
+.volume{border-top:1px solid var(--line);margin-top:16px;padding-top:16px}
+.volume-h{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink2);margin-bottom:10px}
+.volume-body{position:relative;height:110px}
 
 .composer .label{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink2);margin-bottom:7px;display:block}
 .starpick{display:flex;gap:4px;margin-bottom:11px;font-size:20px;color:var(--line);cursor:pointer;user-select:none}
@@ -107,17 +128,6 @@ textarea:focus{outline:none;border-color:var(--teal2)}
 .spin{display:inline-block;width:13px;height:13px;border:2px solid var(--line);border-top-color:var(--teal2);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:7px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* trend sparkline */
-.trend{border-top:1px solid var(--line);margin-top:14px;padding-top:16px}
-.trend-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.trend-h .t{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink2)}
-.trend-h .d{font-family:var(--mono);font-size:11px;color:var(--green);font-weight:500}
-.trend svg{width:100%;height:54px;display:block}
-.trend .insight{display:flex;align-items:center;gap:8px;margin-top:12px;background:var(--bg2);border-radius:9px;padding:9px 12px;font-size:12.5px;color:var(--ink);line-height:1.4}
-.trend .insight .ic{flex-shrink:0;width:22px;height:22px;border-radius:6px;background:var(--greenbg);color:var(--green);display:grid;place-items:center;font-size:12px}
-.trend .insight b{font-weight:600}
-
-/* confirmation modal */
 .confirm-mw{position:fixed;inset:0;background:rgba(10,46,54,.4);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
 .confirm-mw.show{display:flex;animation:fade .2s}
 .confirm-box{background:#fff;border-radius:18px;max-width:420px;width:100%;padding:30px 28px 24px;text-align:center;box-shadow:0 20px 60px rgba(10,46,54,.25);animation:pop .35s cubic-bezier(.2,.9,.3,1.2)}
@@ -146,13 +156,12 @@ textarea:focus{outline:none;border-color:var(--teal2)}
 <body>
 
 <div class="top">
-  <div class="brand"><i>S&amp;H</i><div><b>Reputation Engine</b> <small>· CUSTOMER SUCCESS</small></div></div>
+  <a class="brand" href="https://spitznasandhoff.com"><i>S&amp;H</i><div><b>Reputation Engine</b> <small>· CUSTOMER SUCCESS</small></div></a>
   <div class="biz"><span class="g">G</span> Apex Home Services · Philadelphia</div>
 </div>
 
 <div class="wrap">
   <div class="grid">
-    <!-- Rating hero -->
     <div class="card">
       <div class="card-h"><h3>Reputation</h3><span class="eyebrow">Google · last 90 days</span></div>
       <div class="rating">
@@ -173,9 +182,12 @@ textarea:focus{outline:none;border-color:var(--teal2)}
         <svg id="sparkline" viewBox="0 0 300 54" preserveAspectRatio="none"></svg>
         <div class="insight"><span class="ic">↑</span><div id="insightText">—</div></div>
       </div>
+      <div class="volume">
+        <div class="volume-h">Reviews received · by month</div>
+        <div class="volume-body"><canvas id="volumeChart" role="img" aria-label="Bar chart of reviews received per month"></canvas></div>
+      </div>
     </div>
 
-    <!-- AI composer -->
     <div class="card composer">
       <div class="card-h"><h3>Draft a reply with AI</h3><span class="eyebrow">paste any review</span></div>
       <span class="label">Star rating</span>
@@ -207,7 +219,6 @@ textarea:focus{outline:none;border-color:var(--teal2)}
   <div id="feed"><div class="loading"><span class="spin"></span>Loading reviews…</div></div>
 </div>
 
-<div class="foot">REPUTATION ENGINE · DEMO ENVIRONMENT · LIVE AI · SEEDED DATA</div>
 <div class="confirm-mw" id="confirmMw">
   <div class="confirm-box">
     <div class="big">✓</div>
@@ -222,14 +233,16 @@ textarea:focus{outline:none;border-color:var(--teal2)}
   </div>
 </div>
 
+<div class="foot">REPUTATION ENGINE · DEMO ENVIRONMENT · LIVE AI · SEEDED DATA</div>
 <div class="toast" id="toast"><span class="ck">✓</span><span id="toastTxt"></span></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const URL_='https://ampuejhdkgvjttvlkayc.supabase.co';
 const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtcHVlamhka2d2anR0dmxrYXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4NTc2MzMsImV4cCI6MjA5MzQzMzYzM30.T4nFUlCTiapCx8kxr7sOo2zlKgKg-VlmaYNZXQNC7UU';
 const H={apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'};
 const BIZ='Apex Home Services';
-let reviews=[], filter='all';
+let reviews=[], filter='all', volumeChartInst=null;
 
 const $=id=>document.getElementById(id);
 function starStr(n){let s='';for(let i=1;i<=5;i++)s+=i<=n?'★':'<span class="off">★</span>';return s;}
@@ -240,7 +253,7 @@ async function loadReviews(){
   try{
     const r=await fetch(`${URL_}/rest/v1/reviews?order=created_at.desc&select=*`,{headers:H});
     reviews=await r.json();
-    renderHero(); renderFeed();
+    renderHero(); renderFeed(); renderVolumeChart();
   }catch(e){ $('feed').innerHTML='<div class="loading">Could not load reviews.</div>'; }
 }
 
@@ -249,14 +262,12 @@ function renderHero(){
   const avg=(reviews.reduce((a,r)=>a+r.rating,0)/reviews.length);
   $('avgNum').textContent=avg.toFixed(1);
   $('avgStars').innerHTML=starStr(Math.round(avg));
-  // distribution
   const counts={5:0,4:0,3:0,2:0,1:0};
   reviews.forEach(r=>counts[r.rating]++);
   $('dist').innerHTML=[5,4,3,2,1].map(s=>{
     const pct=Math.round(counts[s]/reviews.length*100);
     return `<div class="distrow">${s}★ <span class="bar"><i style="width:${pct}%"></i></span> ${pct}%</div>`;
   }).join('');
-  // subline
   const monthAgo=Date.now()-30*864e5;
   const newCount=reviews.filter(r=>new Date(r.created_at)>monthAgo).length;
   $('subline').innerHTML=`${reviews.length} reviews · <b>+${newCount} this month</b> · avg reply time 2.3 hrs`;
@@ -268,7 +279,6 @@ function renderHero(){
 }
 
 function renderSparkline(currentAvg){
-  // realistic 6-month climb ending at current average
   const end=currentAvg;
   const pts=[end-0.5,end-0.42,end-0.3,end-0.18,end-0.08,end].map(v=>Math.max(3.4,Math.min(5,v)));
   const W=300,Hh=54,pad=6;
@@ -288,6 +298,32 @@ function renderSparkline(currentAvg){
   const delta=(pts[pts.length-1]-pts[0]).toFixed(1);
   $('trendDelta').textContent=`+${delta}★`;
   $('insightText').innerHTML=`<b>Up ${delta}★ in 6 months.</b> Profiles that reply to every review rank higher and convert better.`;
+}
+
+function renderVolumeChart(){
+  // group real reviews by month (last 6 months, oldest to newest)
+  const now=new Date();
+  const months=[];
+  for(let i=5;i>=0;i--){
+    const d=new Date(now.getFullYear(),now.getMonth()-i,1);
+    months.push({key:`${d.getFullYear()}-${d.getMonth()}`,label:d.toLocaleString('default',{month:'short'}),count:0});
+  }
+  reviews.forEach(r=>{
+    const d=new Date(r.created_at);
+    const key=`${d.getFullYear()}-${d.getMonth()}`;
+    const m=months.find(x=>x.key===key);
+    if(m) m.count++;
+  });
+  if(volumeChartInst) volumeChartInst.destroy();
+  volumeChartInst=new Chart($('volumeChart'),{
+    type:'bar',
+    data:{labels:months.map(m=>m.label),datasets:[{data:months.map(m=>m.count),backgroundColor:'#14B8A6',borderRadius:3,maxBarThickness:22}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+' reviews'}}},
+      scales:{y:{beginAtZero:true,ticks:{precision:0,color:'#9AB0AE',font:{size:10}},grid:{color:'#EAF6F5'}},
+              x:{ticks:{color:'#9AB0AE',font:{family:'DM Mono',size:10}},grid:{display:false}}}
+    }
+  });
 }
 
 function renderFeed(){
@@ -313,7 +349,6 @@ function renderFeed(){
   }).join('');
 }
 
-// ===== AI calls =====
 async function callAI(review_text,rating){
   const r=await fetch(`${URL_}/functions/v1/reviews-reply`,{
     method:'POST',headers:H,
@@ -336,24 +371,17 @@ async function draftFor(id,btn){
   }catch(e){ btn.disabled=false; btn.textContent='✦ Draft reply'; toast('Error: '+e.message); }
 }
 async function postFor(id){
-  const rev=reviews.find(x=>x.id===id);
   await fetch(`${URL_}/rest/v1/reviews?id=eq.${id}`,{method:'PATCH',headers:H,body:JSON.stringify({status:'posted'})});
-  rev.status='posted';
+  const rev=reviews.find(x=>x.id===id); rev.status='posted';
   renderFeed(); renderHero();
   showConfirm(rev.ai_reply);
 }
-function showConfirm(replyText){
-  $('confirmPreview').textContent=replyText||'Your reply has been published.';
-  $('confirmMw').classList.add('show');
-}
-function closeConfirm(){ $('confirmMw').classList.remove('show'); }
 function copyText(id){
   const rev=reviews.find(x=>x.id===id);
   navigator.clipboard?.writeText(rev.ai_reply).catch(()=>{});
   toast('Copied — paste on any platform');
 }
 
-// ===== composer =====
 const sp=$('starpick');
 sp.querySelectorAll('span').forEach((s,i)=>s.onclick=()=>sp.querySelectorAll('span').forEach((x,j)=>x.classList.toggle('on',j<=i)));
 let composerReply='';
@@ -374,7 +402,12 @@ async function draftComposer(){
 }
 function copyComposer(){navigator.clipboard?.writeText(composerReply).catch(()=>{});toast('Copied — paste on any platform');}
 
-// filters
+function showConfirm(replyText){
+  $('confirmPreview').textContent=replyText||'Your reply has been published.';
+  $('confirmMw').classList.add('show');
+}
+function closeConfirm(){ $('confirmMw').classList.remove('show'); }
+
 $('filters').addEventListener('click',e=>{
   const c=e.target.closest('.chip'); if(!c)return;
   filter=c.dataset.f;
